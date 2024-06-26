@@ -5,23 +5,44 @@ import { Wheel } from 'react-custom-roulette';
 export default function SpinWheel() {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState([]);
 
-  const data = [
-    { option: 'test 0', style: { backgroundColor: 'green', textColor: 'black' } },
-    { option: 'test 1', style: { backgroundColor: 'grey', textColor: 'black' } },
-    { option: 'test 2', style: { backgroundColor: 'yellow'} },
-    { option: 'test 3', style: { backgroundColor: 'red' } },
-    { option: 'test 4', style: { backgroundColor: 'blue'} },
+  const data = 
+    [
+      {
+          "option": "test",
+          "style": {
+              "backgroundColor": "green",
+              "textColor": "black"
+          }
+      },
+      {
+          "option": "test1",
+          "style": {
+              "backgroundColor": "green",
+              "textColor": "black"
+          }
+      },
+      {
+          "option": "test2",
+          "style": {
+              "backgroundColor": "green",
+              "textColor": "black"
+          }
+      },
+      {
+          "option": "test3",
+          "style": {
+              "backgroundColor": "green",
+              "textColor": "black"
+          }
+      }
   ];
+
 
   useEffect(() => {
     fetchdata();
   }, []); // This effect runs only once when the component mounts
-
-  // useEffect(() => {
-  //   console.log('-------userData updated--------', userData);
-  // }, [userData]); // This effect runs whenever userData changes
 
   const removeFields = (array) => {
     return array.map(({ _id, createdAt, ...rest }) => rest);
@@ -45,16 +66,18 @@ export default function SpinWheel() {
 
   return (
     <div>
-      <Wheel
-        mustStartSpinning={mustSpin}
-        prizeNumber={prizeNumber}
-        data={data}
-        radiusLineColor={'white'}
-        outerBorderColor={'white'}
-        onStopSpinning={() => {
-          setMustSpin(false);
-        }}
-      />
+      {!!userData && userData?.length > 0 && (
+              <Wheel
+              mustStartSpinning={mustSpin}
+              prizeNumber={prizeNumber}
+              data={userData}
+              radiusLineColor={'white'}
+              outerBorderColor={'white'}
+              onStopSpinning={() => {
+                setMustSpin(false);
+              }}
+            />
+      )}
       <button onClick={handleSpinClick}>SPIN</button>
     </div>
   );

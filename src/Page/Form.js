@@ -23,7 +23,8 @@ const App = () => {
     e.preventDefault();
     try {
       // Replace with your API endpoint
-      await axios.post('http://localhost:5001/api/user/add', { option: name, style: { backgroundColor: 'green', textColor: 'black' } });
+      await axios.post('http://localhost:5001/api/user/add', 
+      { option: name, style: { backgroundColor: 'green', textColor: 'black' } });
       fetchData();
       setName('');
     } catch (error) {
@@ -35,7 +36,6 @@ const App = () => {
     try {
       // Replace with your API endpoint
       const response = await axios.get('http://localhost:5001/api/user/getdata');
-      console.log('-------response-------', response.data);
       setData(response.data.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -44,8 +44,6 @@ const App = () => {
 
   const handleDelete = async (id) => {
     try {
-      // Replace with your API endpoint
-      console.log('-----id-----',id);
       await axios.delete(`http://localhost:5001/api/user/delete/${id}`);
       fetchData();
     } catch (error) {
