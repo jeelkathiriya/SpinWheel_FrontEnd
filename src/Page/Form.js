@@ -19,12 +19,38 @@ const App = () => {
   const [name, setName] = useState('');
   const [data, setData] = useState([]);
 
+
+  // Function to generate a random light hex color code
+const generateRandomLightColor = () => {
+  let letters = 'BCDEF'; // Use only light color range
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * letters.length)];
+  }
+  return color;
+}
+
+// Function to get a unique random light color
+const getUniqueRandomLightColor = (existingColors) => {
+  let newColor = generateRandomLightColor();
+  // Ensure the color is unique
+  while (existingColors.has(newColor)) {
+    newColor = generateRandomLightColor();
+  }
+  existingColors.add(newColor);
+  return newColor;
+}
+
+// Example usage
+let existingColors = new Set();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const color = getUniqueRandomLightColor(existingColors);
       // Replace with your API endpoint
       await axios.post('http://localhost:5001/api/user/add', 
-      { option: name, style: { backgroundColor: 'green', textColor: 'black' } });
+      { option: name, style: { backgroundColor: color.toString(), textColor: 'black' } });
       fetchData();
       setName('');
     } catch (error) {

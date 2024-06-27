@@ -1,16 +1,18 @@
 import './App.css';
 import  Form  from './Page/Form';
 import SpinWheel from './Page/SpinWheel';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <SpinWheel/>
-        <Form/>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SpinWheel/>}/>
+        <Route path="/form" element={<Form/>}/>
+      </Routes>
+    </BrowserRouter>
+
   );
 }
 

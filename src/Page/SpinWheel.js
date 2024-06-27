@@ -7,39 +7,6 @@ export default function SpinWheel() {
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [userData, setUserData] = useState([]);
 
-  const data = 
-    [
-      {
-          "option": "test",
-          "style": {
-              "backgroundColor": "green",
-              "textColor": "black"
-          }
-      },
-      {
-          "option": "test1",
-          "style": {
-              "backgroundColor": "green",
-              "textColor": "black"
-          }
-      },
-      {
-          "option": "test2",
-          "style": {
-              "backgroundColor": "green",
-              "textColor": "black"
-          }
-      },
-      {
-          "option": "test3",
-          "style": {
-              "backgroundColor": "green",
-              "textColor": "black"
-          }
-      }
-  ];
-
-
   useEffect(() => {
     fetchdata();
   }, []); // This effect runs only once when the component mounts
@@ -78,7 +45,7 @@ export default function SpinWheel() {
               }}
             />
       )}
-      <button onClick={handleSpinClick}>SPIN</button>
+      <button onClick={handleSpinClick}>Start</button>
     </div>
   );
 }
